@@ -1,0 +1,319 @@
+{% extends "bootstrap/base.html" %}
+{# WTForms #}
+{% import "bootstrap/wtf.html" as wtf %}
+{##}
+{% import "bootstrap/utils.html" as utils %}
+{% import '_macro.html' as ui %}
+
+    {% block title %} Users Page {% endblock %}
+
+    {% block html_attribs %} lang="zh" {% endblock %}
+
+    {% block head %}
+        {{ super() }}
+    {% endblock %}
+
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet"
+               href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/minty/bootstrap.min.css">
+        <link rel="stylesheet"
+               href="{{url_for('.static', filename='mystyle.css')}}">
+        <style>
+            .Good {
+                margin-top: 100px;
+            }
+        </style>
+    {% endblock %}
+
+
+    
+
+
+    {% block navbar %}
+        <div class="navbar navbar-fixed-top">
+            {{ nav.top.render() }}
+        </div>
+    {% endblock %}
+
+
+
+    {% block content %}
+    <div class='container'>
+    <div class="Good">
+        {% if name  %}
+                <h1> {{ Barrage }} </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>BVID</th>
+                                <th>Time_in_video</th>
+                                <th>Mode</th>
+                                <th>Font_size</th>
+                                <th>Color</th>
+                                <th>Release_date</th>
+                                <th>UP_UID</th>
+                                <th>Dtext</th>
+                            </tr>
+                            {% for item in results1 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>
+                                    <td>{{item[5]}}</td>
+                                    <td>{{item[6]}}</td>
+                                    <td>{{item[7]}}</td>            
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Barrage" action="{{url_for('submit_Barrage')}}" method="POST">
+                        <input type="text" id="BVID" name="BVID" placeholder="BVID">
+                        <br>
+                        <input type="text" id="Time_in_video" name="Time_in_video" placeholder="Time_in_video">
+                        <br>
+                        <input type="text" id="Mode" name="Mode" placeholder="Mode">
+                        <br>
+                        <input type="text" id="Font_size" name="Font_size" placeholder="Font_size">
+                        <br>
+                        <input type="text" id="Color" name="Color" placeholder="Color">
+                        <br>
+                        <input type="text" id="Release_date" name="Release_date" placeholder="Release_date">
+                        <br>
+                        <input type="text" id="UP_UID" name="UP_UID" placeholder="UP_UID">
+                        <br>
+                        <input type="text" id="Dtext" name="Dtext" placeholder="Dtext">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                
+                <p>QUERY</p>
+                <div>
+                </div>
+
+        {% elif name2 %}
+                <h1> {{ Comment_on_Anime }} </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>review_id</th>
+                                <th>article_id</th>
+                                <th>media_id</th>
+                                <th>UP_UID</th>
+                                <th>Size</th>
+                                <th>Rating</th>
+                                <th>title</th>
+                                <th>article</th>
+                                <th>ptime</th>
+                            </tr>
+                            {% for item in results2 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>  
+                                    <td>{{item[5]}}</td>   
+                                    <td>{{item[6]}}</td>   
+                                    <td>{{item[7]}}</td>   
+                                    <td>{{item[8]}}</td>          
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Comment_on_Anime" action="{{url_for('submit_Comment_on_Anime')}}" method="POST">
+                        <input type="text" id="review_id" name="review_id" placeholder="review_id">
+                        <br>
+                        <input type="text" id="article_id" name="article_id" placeholder="article_id">
+                        <br>
+                        <input type="text" id="media_id" name="media_id" placeholder="media_id">
+                        <br>
+                        <input type="text" id="UP_UID" name="UP_UID" placeholder="UP_UID">
+                        <br>
+                        <input type="text" id="Size" name="Size" placeholder="Size">
+                        <br>
+                        <input type="text" id="Rating" name="Rating" placeholder="Rating">
+                        <br>
+                        <input type="text" id="title" name="title" placeholder="title">
+                        <br>
+                        <input type="text" id="article" name="article" placeholder="article">
+                        <br>
+                        <input type="text" id="ptime" name="ptime" placeholder="ptime">
+                        <br>
+                        <button onclick="submit-1"> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <p>QUERY</p>
+                <div>
+                </div>
+
+
+        {% elif name3 %}
+                <h1> {{ Comment_on_Video }} </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Rid</th>
+                                <th>BVID</th>
+                                <th>UP_UID</th>
+                                <th>Ctext</th>
+                                <th>ctime</th>
+                                <th>likes</th>
+                                <th>reply_num</th>
+                                <th>Is_reply</th>
+                                <th>reply_id</th>
+                            </tr>
+                            {% for item in results3 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>  
+                                    <td>{{item[5]}}</td> 
+                                    <td>{{item[6]}}</td>  
+                                    <td>{{item[7]}}</td>  
+                                    <td>{{item[8]}}</td>         
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Comment_on_Video" action="{{url_for('submit_Comment_on_Video')}}" method="POST">
+                        <input type="text" id="Rid" name="Rid" placeholder="Rid">
+                        <br>
+                        <input type="text" id="BVID" name="BVID" placeholder="BVID">
+                        <br>
+                        <input type="text" id="UP_UID" name="UP_UID" placeholder="UP_UID">
+                        <br>
+                        <input type="text" id="Ctext" name="Ctext" placeholder="Ctext">
+                        <br>
+                        <input type="text" id="ctime" name="ctime" placeholder="ctime">
+                        <br>
+                        <input type="text" id="likes" name="likes" placeholder="likes">
+                        <br>
+                        <input type="text" id="reply_num" name="reply_num" placeholder="reply_num">
+                        <br>
+                        <input type="text" id="Is_reply" name="Is_reply" placeholder="Is_reply">
+                        <br>
+                        <input type="text" id="reply_id" name="reply_id" placeholder="reply_id">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <p>QUERY</p>
+                <div>
+                </div>
+
+
+        {% elif name4 %}
+                <h1> {{ Video_popularity }} </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>BVID</th>
+                                <th>view</th>
+                                <th>barrages</th>
+                                <th>reply</th>
+                                <th>favorite</th>
+                                <th>coin</th>
+                                <th>share</th>
+                                <th>likes</th>
+                            </tr>
+                            {% for item in results4 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>  
+                                    <td>{{item[5]}}</td> 
+                                    <td>{{item[6]}}</td> 
+                                    <td>{{item[7]}}</td>     
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Video_popularity" action="{{url_for('submit_Video_popularity')}}" method="POST">
+                        <input type="text" id="BVID" name="BVID" placeholder="BVID">
+                        <br>
+                        <input type="text" id="view" name="view" placeholder="view">
+                        <br>
+                        <input type="text" id="barrages" name="barrages" placeholder="barrages">
+                        <br>
+                        <input type="text" id="reply" name="reply" placeholder="reply">
+                        <br>
+                        <input type="text" id="favorite" name="favorite" placeholder="favorite">
+                        <br>
+                        <input type="text" id="coin" name="coin" placeholder="coin">
+                        <br>
+                        <input type="text" id="share" name="share" placeholder="share">
+                        <br>
+                        <input type="text" id="likes" name="likes" placeholder="likes">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                
+                <p>QUERY</p>
+                <div>
+                </div>
+                
+        {% endif %}
+
+    {% endblock %}
+
+
+
+
+    {% block scripts %}
+    {% endblock %}
+
+
+
+
+    {% block js %}
+    {% endblock %}

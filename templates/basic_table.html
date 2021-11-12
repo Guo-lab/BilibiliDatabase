@@ -1,0 +1,382 @@
+{% extends "bootstrap/base.html" %}
+{# WTForms #}
+{% import "bootstrap/wtf.html" as wtf %}
+{##}
+{% import "bootstrap/utils.html" as utils %}
+{% import '_macro.html' as ui %}
+
+
+    {% block title %} Users Page {% endblock %}
+
+    {% block html_attribs %} lang="zh" {% endblock %}
+
+
+
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet"
+               href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+        <link rel="stylesheet"
+               href="{{url_for('.static', filename='mystyle.css')}}">
+        <style>
+            .Good {
+                margin-top: 100px;
+            }
+        </style>
+    {% endblock %}
+
+
+    
+
+
+    {% block navbar %}
+        <div class="navbar navbar-fixed-top">
+            {{ nav.top.render() }}
+        </div>
+    {% endblock %}
+
+
+
+    {% block content %}
+    <div class='container'>
+    <div class="Good">
+    
+        {% if name  %}
+                <h1> Video_basic </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>BVID</th>
+                                <th>title</th>
+                                <th>videos</th>
+                                <th>Tag_partition</th>
+                                <th>duration</th>
+                            </tr>
+                            {% for item in results1 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>            
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <h1>ADD</h1>
+                <div>
+                    <form id="add-Video_basic" action="{{url_for('submit_Video_basic')}}" method="POST">
+                        <input type="text" id="BVID" name="BVID" placeholder="BVID">
+                        <br>
+                        <input type="text" id="title" name="title" placeholder="title">
+                        <br>
+                        <input type="text" id="videos" name="videos" placeholder="videos">
+                        <br>
+                        <input type="text" id="Tag_partition" name="Tag_partition" placeholder="Tag_partition">
+                        <br>
+                        <input type="text" id="duration" name="duration" placeholder="duration">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <h1>SIMPLE DELETE</h1>
+                <div>
+                    <form id="del-Video_basic" action="{{url_for('del_Video_basic')}}" method="POST">
+                        DELETE THE ROW WITH PRIMARY KEY: 
+                        <input type="text" id="BVID" name="BVID" placeholder="BVID">
+                        <button onclick=""> DELETE </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <h1>QUERY</h1>
+                <br>
+                <h3> SUPPORT QUERY of POSIX </h3>
+                <div>
+                    <form id="q-Video_basic" action="{{url_for('q_Video_basic')}}" method="POST">
+                        SYLLABLES WHICH ONE TO QUERY:
+                        <br>
+                        <input type="text" id="title" name="title" placeholder="title">
+                        <br>
+                        <button onclick=""> QUERY </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <!--Goto Another Page-->
+                <br>
+                <br>
+                <h1>UPDATE</h1>
+                <div>
+                    <form id="new-Video_basic" action="{{url_for('new_Video_basic')}}" method="POST">
+                        WHICH ONE NEED TO BE UPDATED:
+                        <input type="text" id="BVID" name="BVID" placeholder="BVID">
+                        <br>
+                        NEW DATA:
+                        <br>
+                        <input type="text" id="title" name="title" placeholder="title">
+                        <br>
+                        <input type="text" id="videos" name="videos" placeholder="videos">
+                        <br>
+                        <input type="text" id="Tag_partition" name="Tag_partition" placeholder="Tag_partition">
+                        <br>
+                        <input type="text" id="duration" name="duration" placeholder="duration">
+                        <br>
+                        <button onclick=""> UPDATE </button>
+                    </form>
+                </div>
+
+        {% elif name2 %}
+                <h1> Article_DataItem </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>CVID</th>
+                                <th>title</th>
+                                <th>view</th>
+                                <th>likes</th>
+                                <th>reply_num</th>
+                                <th>tags</th>
+                            </tr>
+                            {% for item in results2 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>  
+                                    <td>{{item[5]}}</td>          
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Article_DataItem" action="{{url_for('submit_Article_DataItem')}}" method="POST">
+                        <input type="text" id="CVID" name="CVID" placeholder="CVID">
+                        <br>
+                        <input type="text" id="title" name="title" placeholder="title">
+                        <br>
+                        <input type="text" id="view" name="view" placeholder="view">
+                        <br>
+                        <input type="text" id="likes" name="likes" placeholder="likes">
+                        <br>
+                        <input type="text" id="reply_num" name="reply_num" placeholder="reply_num">
+                        <br>
+                        <input type="text" id="tags" name="tags" placeholder="tags">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <p>QUERY</p>
+                <div>
+                </div>
+
+
+        {% elif name3 %}
+                <h1> User_basic </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>UP_UID</th>
+                                <th>nickname</th>
+                                <th>sex</th>
+                                <th>PersonSign</th>
+                                <th>levels</th>
+                                <th>coin</th>
+                                <th>Vtype</th>
+                            </tr>
+                            {% for item in results3 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>  
+                                    <td>{{item[5]}}</td> 
+                                    <td>{{item[6]}}</td>         
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-User_basic" action="{{url_for('submit_User_basic')}}" method="POST">
+                        <input type="text" id="UP_UID" name="UP_UID" placeholder="UP_UID">
+                        <br>
+                        <input type="text" id="nickname" name="nickname" placeholder="nickname">
+                        <br>
+                        <input type="text" id="sex" name="sex" placeholder="sex">
+                        <br>
+                        <input type="text" id="PersonSign" name="PersonSign" placeholder="PersonSign">
+                        <br>
+                        <input type="text" id="levels" name="levels" placeholder="levels">
+                        <br>
+                        <input type="text" id="coin" name="coin" placeholder="coin">
+                        <br>
+                        <input type="text" id="Vtype" name="Vtype" placeholder="Vtype">
+                        <br>
+                        <button onclick="submit-1"> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <p>QUERY</p>
+                <div>
+                </div>
+
+
+        {% elif name4 %}
+                <h1> Anime_DataItem </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>media_id</th>
+                                <th>title</th>
+                                <th>Rating</th>
+                                <th>Long_comment</th>
+                                <th>Short_comment</th>
+                                <th>play</th>
+                                <th>follow</th>
+                                <th>barrage</th>
+                                <th>tags</th>
+                            </tr>
+                            {% for item in results4 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>  
+                                    <td>{{item[5]}}</td> 
+                                    <td>{{item[6]}}</td> 
+                                    <td>{{item[7]}}</td>
+                                    <td>{{item[8]}}</td>           
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Anime_DataItem" action="{{url_for('submit_Anime_DataItem')}}" method="POST">
+                        <input type="text" id="media_id" name="media_id" placeholder="media_id">
+                        <br>
+                        <input type="text" id="title" name="title" placeholder="title">
+                        <br>
+                        <input type="text" id="Rating" name="Rating" placeholder="Rating">
+                        <br>
+                        <input type="text" id="Long_comment" name="Long_comment" placeholder="Long_comment">
+                        <br>
+                        <input type="text" id="Short_comment" name="Short_comment" placeholder="Short_comment">
+                        <br>
+                        <input type="text" id="play" name="play" placeholder="play">
+                        <br>
+                        <input type="text" id="follow" name="follow" placeholder="follow">
+                        <br>
+                        <input type="text" id="barrage" name="barrage" placeholder="barrage">
+                        <br>
+                        <input type="text" id="tags" name="tags" placeholder="tags">
+                        <br>
+                        <button onclick="submit-1"> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                
+                <p>QUERY</p>
+                <div>
+                </div>
+
+
+        {% elif name5 %}
+                <h1> Partitions </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Part_id</th>
+                                <th>Big_partition</th>
+                                <th>Tag_partition</th>
+                            </tr>
+                            {% for item in results5 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td>       
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Partitions" action="{{url_for('submit_Partitions')}}" method="POST">
+                        <input type="text" id="Part_id" name="Part_id" placeholder="Part_id">
+                        <br>
+                        <input type="text" id="Big_partition" name="Big_partition" placeholder="Big_partition">
+                        <br>
+                        <input type="text" id="Tag_partition" name="Tag_partition" placeholder="Tag_partition">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>                
+                <p>QUERY</p>
+                <div>
+                </div>
+                
+        {% endif %}
+
+
+    </div>
+    </div>
+    {% endblock %}
+
+
+
+
+    {% block scripts %}
+    {% endblock %}
+
+
+
+
+    {% block js %}
+    {% endblock %}

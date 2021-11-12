@@ -1,0 +1,141 @@
+{% extends "bootstrap/base.html" %}
+{# WTForms #}
+{% import "bootstrap/wtf.html" as wtf %}
+{##}
+{% import "bootstrap/utils.html" as utils %}
+{% import '_macro.html' as ui %}
+
+    {% block title %} Users Page {% endblock %}
+
+    {% block html_attribs %} lang="zh"{% endblock %}
+
+
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet"
+               href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+        <link rel="stylesheet"
+               href="{{url_for('.static', filename='mystyle.css')}}">
+        <style>
+            .Good {
+                margin-top: 100px;
+            }
+        </style>
+    {% endblock %}
+
+
+    
+
+
+    {% block navbar %}
+        <div class="navbar navbar-fixed-top">
+            {{ nav.top.render() }}
+        </div>
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% block content %}
+    <div class='container'>
+
+
+
+
+    <div class="Good">
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+            </tr>
+            {% for item in items %}        
+                <tr>
+                    <td> id：{{ item.id }} </td>
+                    <td> username：{{ item.username }} </td>
+                    <td> email：{{ item.email }} </td>
+                    <td>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <p> Current Page：{{ paginate.page }} </p>
+        <!--
+            <tr> total page：{{ paginate.pages }} </tr>
+            <tr> All {{ paginate.total }} users </tr>
+        -->
+
+        <ul class="pagination">
+        {% if paginate.has_prev %}
+            <li class="disabled"><a href="?page={{ paginate.prev_num }}"><i class="material-icons">&laquo;</i></a></li>
+        {% endif %}
+        {% for i in paginate.iter_pages() %}
+            <li class="waves-effect"><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endfor %}
+        {% if paginate.has_next %}
+            <li class="disabled"><a href="?page={{ paginate.next_num }}"><i class="material-icons">&raquo;</i></a></li>
+        {% endif %}
+        </ul>
+
+        <!--
+        {% if paginate.has_prev %}
+            <a href="?page={{ paginate.prev_num }}">&laquo;</a>
+        {% endif %}
+        {% for i in paginate.iter_pages() %}
+            <a href="?page={{ i }}">{{ i }}</a>
+        {% endfor %}
+        {% if paginate.has_next %}
+            <a href="?page={{ paginate.next_num }}">&raquo;</a>
+        {% endif %}
+        -->
+
+        <!--Input-->
+        <div>
+            <form id="add-data" action="{{url_for('submit')}}" method="POST">
+                <input type="text" id="id" name="id" placeholder="Input Your ID">
+                <br>
+                <input type="text" id="username" name="username" placeholder="Input Your name">
+                <br>
+                <input type="text" id="email" name="email" placeholder="Input Your email">
+                <br>
+                <button onclick="">SUBMIT</button>
+            </form>
+        </div>
+
+        <div class="Reg" style="color: #3300CC">
+                <form id="back2homenow" action="{{url_for('back2home')}}" method="POST">
+                    <button onclick="">Have Registered, Back To Home Page! </button>
+                </form>
+        </div>
+
+    </div>
+    </div>
+
+
+
+    {% endblock %}
+
+
+
+
+    {% block scripts %}
+    {% endblock %}
+
+
+
+
+    {% block js %}
+    {% endblock %}
+

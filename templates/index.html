@@ -1,0 +1,131 @@
+{% extends "bootstrap/base.html" %}
+{# WTForms #}
+{% import "bootstrap/wtf.html" as wtf %}
+{##}
+{% import "bootstrap/utils.html" as utils %}
+{% import '_macro.html' as ui %}
+{% import 'navi.html' as navi %}
+    
+
+
+    {% block title %} Home page {% endblock %}
+
+    {% block html_attribs %} lang="zh" {% endblock %}
+
+
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet"
+               href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css">
+        <link rel="stylesheet"
+               href="{{url_for('.static', filename='mystyle.css')}}">
+        <style>
+        .Good {
+            width: 100%;
+            margin-top: 100px;
+        }
+        </style>
+        <style>
+        .Reg {
+            font color: #3300CC
+        }
+        </style>
+    {% endblock %}
+
+
+
+
+
+
+    {% block content %}
+
+    {{ navi.navv() }}
+    
+    <div class="Good">
+        <pre>Our App aims to Spider data from Bilibili, Create own Database-System and Display</pre>
+            <div class="Reg" style="color: #3300CC">
+                <form id="add-register-users" action="{{url_for('register')}}" method="POST">
+                    <button onclick="">Go To Register</button>
+                </form>
+            </div>
+        <br>
+        <pre>
+            ==================================================================================== 
+            ===========================================
+
+            ░░░░░░░░░░░░░░░░░░░░░░█████████░░░░░░░░░
+            ░░███████░░░░░░░░░░███▒▒▒▒▒▒▒▒███░░░░░░░
+            ░░█▒▒▒▒▒▒█░░░░░░░███▒▒▒▒▒▒▒▒▒▒▒▒▒███░░░░
+            ░░░█▒▒▒▒▒▒█░░░░██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░
+            ░░░░█▒▒▒▒▒█░░░██▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒███░
+            ░░░░░█▒▒▒█░░░█▒▒▒▒▒▒████▒▒▒▒████▒▒▒▒▒▒██
+            ░░░█████████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██
+            ░░░█▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒██
+            ░██▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒██▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██
+            ██▒▒▒███████████▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒▒██
+            █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒████████▒▒▒▒▒▒▒██
+            ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░
+            ░█▒▒▒███████████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██░░░
+            ░██▒▒▒▒▒▒▒▒▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█░░░░░
+            ░░████████████░░░█████████████████░░░░░░
+
+
+            Thank You for coming !!!
+
+            Please choose the database to connect! 
+            ===========================================
+            ==================================================================================== 
+        </pre>
+        <br>
+        <br>
+        <div>
+            <form id="add-db" action="{{url_for('submit_db')}}" method="POST">
+                <input type="text" id="Database" name="Database" placeholder="Input Your Database">
+                <br>
+                <input type="text" id="username" name="username" placeholder="Input Your username">
+                <br>
+                <input type="text" id="password" name="password" placeholder="Input Your password">
+                <br>
+                <br>
+                <br>
+                <div style="color: #3300CC">
+                    <button onclick="">CONNECT TO DATABASE</button>
+                </div> 
+            </form>
+            <br>
+            <div>
+                <table class="table table-striped">
+                Connected to Your Database
+                <br>
+                <br>
+                <th>Follows are tables: <th>
+                    {% for item in msg %}        
+                        <tr>
+                        {% for each in item %} 
+                            <td> {{ each }} </td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    {% endblock %}
+
+
+
+
+    {% block scripts %}
+        <script src="{{url_for('.static', filename='myscripts.js')}}"></script>
+        {{super()}}
+    {% endblock %}
+
+
+
+
+    {% block js %}
+    {% endblock %}

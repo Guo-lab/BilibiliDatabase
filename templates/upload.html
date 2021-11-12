@@ -1,0 +1,207 @@
+{% extends "bootstrap/base.html" %}
+{# WTForms #}
+{% import "bootstrap/wtf.html" as wtf %}
+{##}
+{% import "bootstrap/utils.html" as utils %}
+{% import '_macro.html' as ui %}
+{% import 'navi.html' as navi %}
+
+    {% block title %} Users Page {% endblock %}
+
+    {% block html_attribs %} lang="zh" {% endblock %}
+
+    {% block head %}
+        {{ super() }}
+    {% endblock %}
+
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet"
+               href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css">
+        <link rel="stylesheet"
+               href="{{url_for('.static', filename='mystyle.css')}}">
+        <style>
+            .Good {
+                margin-top: 100px;
+            }
+        </style>
+    {% endblock %}
+
+
+    
+
+    
+
+
+
+
+
+    {% block content %}
+
+    {{ navi.navv() }}
+    {# https://segmentfault.com/q/1010000005715124 #}
+
+    <div class='container'>
+    <div class="Good">
+
+        {% if name  %}
+                <h1> Upload_Article </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>CVID</th>
+                                <th>UP_UID</th>
+                                <th>pubtime</th>
+                            </tr>
+                            {% for item in results1 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td>         
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Upload_Article" action="{{url_for('submit_Upload_Article')}}" method="POST">
+                        <input type="text" id="CVID" name="CVID" placeholder="CVID">
+                        <br>
+                        <input type="text" id="UP_UID" name="UP_UID" placeholder="UP_UID">
+                        <br>
+                        <input type="text" id="pubtime" name="pubtime" placeholder="pubtime">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <p>QUERY</p>
+                <div>
+                </div>
+
+        {% elif name2 %}
+                <h1> {{ User_Upload }}</h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>UP_UID</th>
+                                <th>video</th>
+                                <th>audio</th>
+                                <th>article</th>
+                                <th>album</th>
+                            </tr>
+                            {% for item in results2 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td> 
+                                    <td>{{item[3]}}</td> 
+                                    <td>{{item[4]}}</td>          
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-User_Upload" action="{{url_for('submit_User_Upload')}}" method="POST">
+                        <input type="text" id="UP_UID" name="UP_UID" placeholder="UP_UID">
+                        <br>
+                        <input type="text" id="video" name="video" placeholder="video">
+                        <br>
+                        <input type="text" id="audio" name="audio" placeholder="audio">
+                        <br>
+                        <input type="text" id="article" name="article" placeholder="article">
+                        <br>
+                        <input type="text" id="album" name="album" placeholder="album">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                
+                <p>QUERY</p>
+                <div>
+                </div>
+
+
+        {% elif name3 %}
+                <h1> {{ Upoad_Video }} </h1>
+                <div class="row pre-scrollable">
+                    <!--div class="bottomScroll"-->
+                        <table class="table table-striped">
+                            <tr>
+                                <th>UP_UID</th>
+                                <th>BVID</th>
+                                <th>pubdate</th>
+                                <th>ctime</th>
+                            </tr>
+                            {% for item in results3 %}
+                                <tr>
+                                    <td>{{item[0]}}</td>
+                                    <td>{{item[1]}}</td>
+                                    <td>{{item[2]}}</td>  
+                                    <td>{{item[3]}}</td>     
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    <!--/div-->
+                </div>
+                <br>
+                <br>
+                <br>
+                <!--Input-->
+                <p>ADD</p>
+                <div>
+                    <form id="add-Upoad_Video" action="{{url_for('submit_Upload_Video')}}" method="POST">
+                        <input type="text" id="UP_UID" name="UP_UID" placeholder="UP_UID">
+                        <br>
+                        <input type="text" id="BVID" name="BVID" placeholder="BVID">
+                        <br>
+                        <input type="text" id="pubdate" name="pubdate" placeholder="pubdate">
+                        <br>
+                        <input type="text" id="ctime" name="ctime" placeholder="ctime">
+                        <br>
+                        <button onclick=""> SUBMIT </button>
+                    </form>
+                </div>
+                <br>
+                <br>
+                <br>                
+                <p>QUERY</p>
+                <div>
+                </div>
+                
+        {% endif %}
+
+
+    </div>
+    </div>
+    {% endblock %}
+
+
+
+
+    {% block scripts %}
+    {% endblock %}
+
+
+
+
+    {% block js %}
+    {% endblock %}

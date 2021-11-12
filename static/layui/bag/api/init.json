@@ -1,0 +1,74 @@
+{
+	
+  "homeInfo": {
+    "title": "首页",
+    "href": "index.html"
+  },
+  
+  
+  
+  "logoInfo": {
+    "title": "LAYUI MINI",
+    "image": "bag/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": [
+    {
+      "title": "DashBoard",
+      "icon": "fa fa-address-book",
+      "href": "",
+      "target": "_self",
+      
+	  "child": [
+        {
+          "title": "Usr Management",
+          "href": "",
+          "icon": "fa fa-home",
+          "target": "_self",
+          "child": [
+            {
+              "title": "Usr List",
+              "href": "page/usr_list.html",
+              "icon": "fa fa-user",
+              "target": "_self"
+            },
+            {
+              "title": "Add Usr",
+              "href": "page/usr_add.html",
+              "icon": "fa fa-user",
+              "target": "_self"
+            },
+            {
+              "title": "Edit Usr",
+              "href": "page/usr_edit.html",
+              "icon": "fa fa-pencil",
+              "target": "_self"
+            }
+          ]
+        },
+		
+        {
+          "title": "DataBase",
+          "href": "page/setting.html",
+          "icon": "fa fa-bar-chart",
+          "target": "_self"
+        },
+		
+		{
+		  "title": "System Management",
+		  "href": "",
+		  "icon": "fa fa-cog",
+		  "target": "_self",
+		  "child": [
+		    {
+		      "title": "Usr List",
+		      "href": "page/welcome-1.html",
+		      "icon": "fa fa-user",
+		      "target": "_self"
+		    }
+		  ]
+		}
+      ]
+    }
+  ]
+}

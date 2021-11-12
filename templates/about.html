@@ -1,0 +1,29 @@
+{% extends "bootstrap/base.html" %}
+{% block head %}
+    {{ super() }}
+    <style>
+        .frame_style{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block navbar %}
+        <!--div class="navbar navbar-fixed-top"-->
+        <div>
+            {{ nav.top.render() }}
+        </div>
+{% endblock %}
+
+{% block body %}
+    {{ super() }}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-lg-offset-2" style="height: 800px">
+                <iframe class="frame_style" src="http://127.0.0.1:5000/static/pdfjs/web/viewer.html?file=\static\doc\1634721423.pdf">
+                </iframe>
+            </div>
+        </div>
+    </div>
+{% endblock %}

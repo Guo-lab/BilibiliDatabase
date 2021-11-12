@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--script>
+        function setScroll() {
+		    var height=parseInt($(window).height())+"px";
+		    var width=parseInt($(window).width())+"px";
+       		$(".bottomScroll").css({
+                "height":400px,
+	 			"width":400px,
+	 			'overflow-y': 'scroll',
+	 			'overflow-x': 'scroll',
+				'display': 'inline-grid'});
+            });
+        }
+    </script-->
+    </head>
+
+    {% extends "bootstrap/base.html" %}
+
+    {% block title %}This is Home page{% endblock %}
+   
+    {% block html_attribs %} lang="zh"{% endblock %}
+  
+    {% block navbar %}
+    <div class="navbar navbar-fixed-top">
+      <!-- ... -->
+    </div>
+    {% endblock %}
+   
+    {% block content %}
+    <div class="container">
+    
+        <h1>Come On!</h1>
+
+        <div class="row pre-scrollable">
+            <!--div class="bottomScroll"-->
+                <table class="table table-striped">
+                    <tr>
+                        <th>FIRST_NAME</th>
+                        <th>AGE</th>
+                        <th>ID</th>
+                    </tr>
+                    {% for item in results %}
+                        <tr>
+                            <td>{{item[0]}}</td>
+                            <td>{{item[1]}}</td>
+                            <td>{{item[2]}}</td>            
+                        </tr>
+                    {% endfor %}
+                </table>
+            <!--/div-->
+        </div>
+
+        <div>
+            <form id="add-data" action="{{url_for('submit')}}" method="POST">
+                <input type="text" id="FIRST_NAME" name="name">
+                <br>
+                <input type="text" id="AGE" name="age" placeholder="年龄">
+                <br>
+                <input type="text" id="ID" name="id" placeholder="学号">
+                <br>
+                <button onclick="submit">SUBMIT</button>
+            </form>
+        </div>
+
+
+        <!--
+        <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+        -->
+
+        {% endblock %}
+    
+    </div>
+
+</html>
